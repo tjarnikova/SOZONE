@@ -2,6 +2,8 @@ The Jupyter Notebooks in this directory are for sharing of Python code
 techniques and notes about model results analysis code.
 They were developed by Tereza Jarnikova.
 
+    Contact: T.Jarnikova[at]uea.ac.uk
+
 The links below are to static renderings of the notebooks via
 [nbviewer.jupyter.org](http://nbviewer.jupyter.org/).
 Descriptions under the links below are from the first cell of the notebooks
@@ -26,27 +28,26 @@ Descriptions under the links below are from the first cell of the notebooks
 
 * ##[TOM12_TJ_T001_explore.ipynb](/RUNS_ANALYSIS//TOM12_TJ_T001_explore.ipynb)  
     
-    **Looking at first model run**  
+    **Notebook purpose: **  
       
-    Some questions:  
-        - those breakdown files and calculations?  
-          
-          
-    Hi Dave,   
-      
-        All good over here.   
-        -carbon export?  
-          
+    - Looking at first model run  
+    - familiarizing with output, calculating sector-wide averages  
 
 
 * ##[CarbonContent.ipynb](/RUNS_ANALYSIS//CarbonContent.ipynb)  
     
+    **Notebook purpose:**  
+      
+    - compare carbon budget between model T001 and M001 model runs  
+
 
 ##License
 
-These notebooks and files are copyright 2022
-by Tereza Jarnikova, working in the [Green Ocean Group](https://www.uea.ac.uk/groups-and-centres/green-ocean)
-at the University of East Anglia. Contact: T.Jarnikova[a]uea.ac.uk
+These notebooks and files are copyright 2022-2022
+by Tereza Jarnikova, working in the Green Ocean Modelling Group
+at the University of East Anglia. 
+https://www.uea.ac.uk/groups-and-centres/green-ocean
+
 They are licensed under the Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0
 Please see the LICENSE file for details of the license.

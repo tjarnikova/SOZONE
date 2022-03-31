@@ -36,6 +36,8 @@ The Jupyter Notebooks in this directory are for sharing of Python code
 techniques and notes about model results analysis code.
 They were developed by Tereza Jarnikova.
 
+    Contact: T.Jarnikova[at]uea.ac.uk
+
 The links below are to static renderings of the notebooks via
 [nbviewer.jupyter.org](http://nbviewer.jupyter.org/).
 Descriptions under the links below are from the first cell of the notebooks
@@ -48,9 +50,10 @@ Descriptions under the links below are from the first cell of the notebooks
     license = """
 ##License
 
-These notebooks and files are copyright 2013-{this_year}
-by the Salish Sea MEOPAR Project Contributors
-and The University of British Columbia.
+These notebooks and files are copyright 2022-{this_year}
+by Tereza Jarnikova, working in the Green Ocean Modelling Group
+at the University of East Anglia. 
+https://www.uea.ac.uk/groups-and-centres/green-ocean
 
 They are licensed under the Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0
