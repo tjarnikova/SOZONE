@@ -23,14 +23,14 @@ import os
 import re
 
 
-NBVIEWER = 'http://nbviewer.jupyter.org/urls'
-REPO = 'https://raw.githubusercontent.com/tjarnikova/SOZONE/master/'
+#NBVIEWER = 'http://nbviewer.jupyter.org/urls'
+REPO = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/'
 REPO_DIR = '/RUNS_ANALYSIS/'
 TITLE_PATTERN = re.compile('#{1,6} ?')
 
 
 def main():
-    url = os.path.join(NBVIEWER, REPO, REPO_DIR)
+    url = os.path.join(REPO, REPO_DIR)
     readme = """\
 The Jupyter Notebooks in this directory are for sharing of Python code
 techniques and notes about model results analysis code.
