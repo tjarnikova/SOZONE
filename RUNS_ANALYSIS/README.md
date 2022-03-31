@@ -44,10 +44,9 @@ Descriptions under the links below are from the first cell of the notebooks
 
 ##License
 
-These notebooks and files are copyright 2013-2022
-by the Salish Sea MEOPAR Project Contributors
-and The University of British Columbia.
-
+These notebooks and files are copyright 2022
+by Tereza Jarnikova, working in the [Green Ocean Group](https://www.uea.ac.uk/groups-and-centres/green-ocean)
+at the University of East Anglia. Contact: T.Jarnikova[a]uea.ac.uk
 They are licensed under the Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0
 Please see the LICENSE file for details of the license.
