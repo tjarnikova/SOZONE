@@ -14,6 +14,7 @@
 # limitations under the License.
 
 """Salish Sea NEMO Jupyter Notebook collection README generator
+adapted by TJSJ, written by DL at SalishSeaCast group
 """
 import datetime
 import glob
@@ -23,8 +24,8 @@ import re
 
 
 NBVIEWER = 'http://nbviewer.jupyter.org/urls'
-REPO = 'bitbucket.org/salishsea/analysis-terez/raw/tip'
-REPO_DIR = 'notebooks'
+REPO = 'https://raw.githubusercontent.com/tjarnikova/SOZONE/master/'
+REPO_DIR = '/RUNS_ANALYSIS/'
 TITLE_PATTERN = re.compile('#{1,6} ?')
 
 

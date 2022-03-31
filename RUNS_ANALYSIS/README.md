@@ -7,7 +7,7 @@ The links below are to static renderings of the notebooks via
 Descriptions under the links below are from the first cell of the notebooks
 (if that cell contains Markdown or raw text).
 
-* ##[T001_M001_Hovmol_Compare.ipynb](http://nbviewer.jupyter.org/urls/bitbucket.org/salishsea/analysis-terez/raw/tip/notebooks/T001_M001_Hovmol_Compare.ipynb)  
+* ##[T001_M001_Hovmol_Compare.ipynb](/RUNS_ANALYSIS//T001_M001_Hovmol_Compare.ipynb)  
     
     **Notebook purpose: Comparing output of TOM12_TJ_T001 and TOM12_TJ_M001**  
       
@@ -24,7 +24,7 @@ Descriptions under the links below are from the first cell of the notebooks
     - appreciable temperature differences even at 4000m depth!  
     - in both summer & winter, T001 has more DIC at surface but less at depth?  
 
-* ##[TOM12_TJ_T001_explore.ipynb](http://nbviewer.jupyter.org/urls/bitbucket.org/salishsea/analysis-terez/raw/tip/notebooks/TOM12_TJ_T001_explore.ipynb)  
+* ##[TOM12_TJ_T001_explore.ipynb](/RUNS_ANALYSIS//TOM12_TJ_T001_explore.ipynb)  
     
     **Looking at first model run**  
       
@@ -39,7 +39,7 @@ Descriptions under the links below are from the first cell of the notebooks
           
 
 
-* ##[CarbonContent.ipynb](http://nbviewer.jupyter.org/urls/bitbucket.org/salishsea/analysis-terez/raw/tip/notebooks/CarbonContent.ipynb)  
+* ##[CarbonContent.ipynb](/RUNS_ANALYSIS//CarbonContent.ipynb)  
     
 
 ##License
