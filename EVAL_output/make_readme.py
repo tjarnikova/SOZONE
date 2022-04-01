@@ -33,10 +33,11 @@ def main():
     url = os.path.join(REPO, REPO_DIR)
     readme = """\
 
-    
-Short 
+    Short summaries of notebooks:
+
 """
     for fn in glob.glob('*.ipynb'):
+        url = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/'
         readme += '* ##[{fn}]({url}/{fn})  \n    \n'.format(fn=fn, url=url)
         readme += notebook_description(fn)
     license = """
