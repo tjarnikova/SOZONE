@@ -25,7 +25,7 @@ import re
 
 #NBVIEWER = 'http://nbviewer.jupyter.org/urls'
 REPO = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/'
-REPO_DIR = '/EVAL_output/'
+REPO_DIR = 'EVAL_output/'
 TITLE_PATTERN = re.compile('#{1,6} ?')
 
 

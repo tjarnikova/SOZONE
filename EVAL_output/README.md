@@ -9,7 +9,7 @@
       
     **How does DIC, TA, T, S from T001, M001 runs compare?**  
       
-    next steps - add model output to dataframes  
+    next steps - add model output to dataframes. calculate bias in DIC, TA, s, t,   
 
 
 ##License
