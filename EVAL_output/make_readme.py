@@ -37,7 +37,7 @@ def main():
 
 """
     for fn in glob.glob('*.ipynb'):
-        url = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/'
+        url = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output'
         readme += '* ##[{fn}]({url}/{fn})  \n    \n'.format(fn=fn, url=url)
         readme += notebook_description(fn)
     license = """

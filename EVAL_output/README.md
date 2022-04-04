@@ -1,7 +1,7 @@
 
     Short summaries of notebooks:
 
-* ##[GLODAPv2021comparison_pipeline.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output//GLODAPv2021comparison_pipeline.ipynb)  
+* ##[GLODAPv2021comparison_pipeline.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/GLODAPv2021comparison_pipeline.ipynb)  
     
     **What observations are there? how are they distributed in space and time? (GLODAPv2.2021)**  
       
