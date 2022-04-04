@@ -1,9 +1,15 @@
 
     Short summaries of notebooks:
 
-* ##[WOA_comparison_scratch.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output//WOA_comparison_scratch.ipynb)  
+* ##[GLODAPv2021comparison_pipeline.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output//GLODAPv2021comparison_pipeline.ipynb)  
     
-    **testing**  
+    **What observations are there? how are they distributed in space and time? (GLODAPv2.2021)**  
+      
+    extract only SO points with valid DIC and TA   
+      
+    **How does DIC, TA, T, S from T001, M001 runs compare?**  
+      
+    next steps - add model output to dataframes  
 
 
 ##License
