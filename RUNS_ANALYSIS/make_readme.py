@@ -25,26 +25,19 @@ import re
 
 #NBVIEWER = 'http://nbviewer.jupyter.org/urls'
 REPO = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/'
-REPO_DIR = '/RUNS_ANALYSIS/'
+REPO_DIR = 'EVAL_output/'
 TITLE_PATTERN = re.compile('#{1,6} ?')
 
 
 def main():
     url = os.path.join(REPO, REPO_DIR)
     readme = """\
-The Jupyter Notebooks in this directory are for sharing of Python code
-techniques and notes about model results analysis code.
-They were developed by Tereza Jarnikova.
 
-    Contact: T.Jarnikova[at]uea.ac.uk
-
-The links below are to static renderings of the notebooks via
-[nbviewer.jupyter.org](http://nbviewer.jupyter.org/).
-Descriptions under the links below are from the first cell of the notebooks
-(if that cell contains Markdown or raw text).
+    Short summaries of notebooks:
 
 """
     for fn in glob.glob('*.ipynb'):
+        url = 'https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/RUNS_ANALYSIS'
         readme += '* ##[{fn}]({url}/{fn})  \n    \n'.format(fn=fn, url=url)
         readme += notebook_description(fn)
     license = """
@@ -54,6 +47,8 @@ These notebooks and files are copyright 2022-{this_year}
 by Tereza Jarnikova, working in the Green Ocean Modelling Group
 at the University of East Anglia. 
 https://www.uea.ac.uk/groups-and-centres/green-ocean
+
+Contact: T.Jarnikova[at]uea.ac.uk
 
 They are licensed under the Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0
