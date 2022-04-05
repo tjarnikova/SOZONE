@@ -3,13 +3,10 @@
 
 * ##[GLODAPv2021comparison_pipeline.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/GLODAPv2021comparison_pipeline.ipynb)  
     
-    **What observations are there? how are they distributed in space and time? (GLODAPv2.2021)**  
+    **What DIC and ALK observations are available in GLODAPv2.2021? how are they distributed in space and time? **  
       
-    extract only SO points with valid DIC and TA   
-      
-    **How does DIC, TA, T, S from T001, M001 runs compare?**  
-      
-    next steps - add model output to dataframes. calculate bias in DIC, TA, s, t,   
+    **How does the evaluation of (regridded) DIC and ALK from T001(NCEP), M001(MetOffice) runs compare by season and depth?**  
+
 
 
 ##License
