@@ -8,6 +8,16 @@
     **How does the evaluation of (regridded) DIC and ALK from T001(NCEP), M001(MetOffice) runs compare by season and depth?**  
 
 
+* ##[EXPLORE_SOCAT.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/EXPLORE_SOCAT.ipynb)  
+    
+    **SOCAT analysis**  
+      
+    :cat: :cat: :cat: :cat: :cat: :cat:   
+      
+         1. Explore the SOCATv2021_tracks_gridded_monthly.nc and recover major (time) trends in the SO  
+        2. Compare how T001 and M001 do against these obs.   
+
+
 
 ##License
 
