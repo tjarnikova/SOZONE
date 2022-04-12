@@ -3,11 +3,11 @@
 
 * ##[GLODAPv2021comparison_pipeline.ipynb](https://nbviewer.org/github/tjarnikova/SOZONE/blob/master/EVAL_output/GLODAPv2021comparison_pipeline.ipynb)  
     
-    **GLODAP analysis**  
+    **GLODAP southern ocean analysis**  
       
-    :ship: :globe_with_meridians:  
+    :ship: :globe_with_meridians: :ship: :globe_with_meridians:  
       
-         1. What DIC and ALK observations are available in GLODAPv2.2021? how are they distributed in space and time?  
+         1. What DIC and ALK observations are available in GLODAPv2.2021 for the southern ocean (<50lat)? how are they distributed in space and time?  
         2. How does the evaluation of (regridded) DIC and ALK from T001(NCEP), M001(MetOffice) runs compare by season and depth?  
 
 
