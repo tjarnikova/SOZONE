@@ -31,6 +31,7 @@
     **Notebook purpose:**  
       
     - compare carbon budget between model T001 and M001 model runs  
+    - consider air-sea flux  
 
 
 ##License
