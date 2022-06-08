@@ -1,9 +1,12 @@
-import scendict as sc
+
 import netCDF4 as nc
 import xarray as xr
 import numpy as np
 import warnings
 warnings.filterwarnings('ignore')
+import sys
+sys.path.append('..')
+import scendict as sc
 
 rdir = '/gpfs/home/mep22dku/scratch/MET_forcing/'
 starts = np.array([0, 31,  59,  90, 120, 151, 181, 212, 243, 273, 304, 334])
@@ -14,14 +17,14 @@ scens = ['1A','1B','2A','2B','3A','3B']
 
 for s in range(0,6):
     scen = scens[s]
-    t_stor = np.random.rand(161,14,149,182)
+    t_stor = np.random.rand(161,15,149,182)
     ncnam = f'./ncs/scen_{scen}_monthly_airtemp.nc'
     print(ncnam)
     for yr in range(1940,2101):
         if yr%10 == 0:
             print(yr)
         try:
-            tw = nc.Dataset(f'{rdir}scen_{scen}/MetOffice_{varpat}{yr}.nc') 
+            tw = nc.Dataset(f'{rdir}scen_{scen}/MetOffice_{varpat}_y{yr}.nc') 
             t_nc = tw[var][:]
 
             for i in range(0,12):
@@ -33,6 +36,8 @@ for s in range(0,6):
             t_stor[yr-1940,12,:,:] = np.nanmean(summer,axis =0)
             winter = (t_nc[151:243,:,:])
             t_stor[yr-1940,13,:,:] = np.nanmean(winter,axis = 0)
+            #full year
+            t_stor[yr-1940,14,:,:] = np.nanmean(t_nc,axis = 0)
         except:
             t_stor[yr-1940,:,:,:] = np.nan
 
@@ -40,13 +45,13 @@ for s in range(0,6):
      {"mean_tair": (("yr", "mon", "y", "x" ), t_stor)},
         coords={
             "yr": np.arange(1940,2101,1),
-            "mon": np.arange(1,15,1),
+            "mon": np.arange(1,16,1),
             "x": np.arange(0,182,1),
             "y": np.arange(0,149,1),
         },
         attrs={
             "desc": "mean monthly maps of temp, made from ~/scratch/MET_forcing/",
-            "desc2": "summer is month 13, winter is month 14"
+            "desc2": "summer is month 13, winter is month 14, full year is month 15 (index 14)"
       },
        )
         
