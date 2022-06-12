@@ -5,21 +5,37 @@ import glob
 import warnings
 import sys
 warnings.filterwarnings('ignore')
+import argparse
+from argparse import RawTextHelpFormatter
+parser = argparse.ArgumentParser(description=  """   
+    script for simple visualization of variables from PLANKTOM in python \n
+    - visualizes raw model output with no projection
+    - 6 subplots:
+        -first row global ocean:
+            full year mean for years selected, summer mean for years selected, 
+            winter mean for years selected
+        -second row SO south of - 30 (same 3 subplots as above)
+    - only requires standard modules (incl python and netCDF4) to be loaded
+    - run from command line, by default produces .jpgs in directory where it is run
 
-'''
-script for plotting surface variables
+    usage:
 
-usage:
-(standard modules must be loaded)
-python test.py modname yearstart yearend filetype varname
+    python plot_6sub.py modname yearstart yearend filetype varname depthindex
 
-filetype is one of grid_T, grid_T, ptrc_T, icemod, and grid_V
-(varname must be in the filetype you chose)
+    filetype is one of grid_T, grid_T, ptrc_T, icemod, and grid_V
+    (varname must be in the filetype you chose)
 
-creates plots in a directory called PLOTS (subdirectory of directory where this .py file is)
+    example:
 
-TJSJ 2022 (T.Jarnikova@uea.ac.uk) 
-'''
+    python plot_6sub.py TOM12_RW_M13V 1970 1971 ptrc_T DIC 0
+
+    notes:
+    - tries to optimize 
+
+    written by TJSJ 2022 (T.Jarnikova@uea.ac.uk) 
+
+    """, formatter_class=RawTextHelpFormatter)
+
 modname = sys.argv[1]
 yearstart = int(sys.argv[2])
 yearend = int(sys.argv[3])
@@ -31,11 +47,11 @@ print(f'Plotting for run {modname}, years {yearstart}-{yearend}')
 print(f'variable {var} (in filepattern {ncstr})')
 print(f'depth level {depthind}')
 
-#we assume that model output is in this directory tree
+#we assume that model output is in this directory tree, change if nec. 
 baseDir = '/gpfs/data/greenocean/software/runs/'
 
 
-#access first file in timeseries, get out units 
+#access first file in timeseries, get out units and longname 
 w = glob.glob(f'{baseDir}{modname}/*{yearstart}*{ncstr}.nc')
 ncnam = (w[0])
 tnc = nc.Dataset(ncnam)
@@ -46,6 +62,7 @@ units = tnc[var].units
 tnc = nc.Dataset('/gpfs/data/greenocean/software/resources/regrid/mesh_mask3_6.nc')
 tdepths = (tnc['gdept_1d'][0,:])
 t_depth = tdepths[depthind]
+
 #prepare array of years to loop through, and storage arrays for output
 # and for max and min for plotting
 yrs = np.arange(yearstart,yearend+1,1)
@@ -86,18 +103,8 @@ for y in range(0,noyrs):
     winter_stor[y,:,:] = np.nanmean(tvar[5:8,:,:],axis = 0)
     allyear_stor[y,:,:] = np.nanmean(tvar[:,:,:],axis = 0)
     
-## average out the stored arrays
-winter_stor_mn = np.nanmean(winter_stor,axis =0)
-summer_stor_mn = np.nanmean(summer_stor,axis =0)
-allyear_stor_mn = np.nanmean(allyear_stor,axis =0)
-plt_min = 0.8*np.nanmean(allyear_stor_mn)
-plt_max = 1.2*np.nanmean(allyear_stor_mn)
-# get only the SO
-winter_stor_mn_SO = winter_stor_mn[0:50,:]
-summer_stor_mn_SO = summer_stor_mn[0:50,:]
-allyear_stor_mn_SO = allyear_stor_mn[0:50,:]
-plt_min_SO = 0.9*np.nanmean(allyear_stor_mn_SO)
-plt_max_SO = 1.1*np.nanmean(allyear_stor_mn_SO)
+
+
 
 to_plt = [allyear_stor_mn, summer_stor_mn, winter_stor_mn,\
          allyear_stor_mn_SO, summer_stor_mn_SO, winter_stor_mn_SO]

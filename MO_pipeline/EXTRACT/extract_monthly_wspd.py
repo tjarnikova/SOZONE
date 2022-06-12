@@ -1,4 +1,4 @@
-cd import glob
+import glob
 import pickle
 import netCDF4 as nc
 import numpy as np
