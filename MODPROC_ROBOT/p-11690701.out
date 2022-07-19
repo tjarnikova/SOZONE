@@ -1,0 +1,108 @@
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/exceptions.py", line 1079, in __call__
+        return func(*args, **kwargs)
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/cli/main.py", line 84, in _main
+        exit_code = do_call(args, p)
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/cli/conda_argparse.py", line 83, in do_call
+        return getattr(module, func_name)(args, parser)
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/cli/main_init.py", line 51, in execute
+        anaconda_prompt, args.reverse)
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/core/initialize.py", line 121, in initialize
+        run_plan_elevated(plan2)
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/core/initialize.py", line 691, in run_plan_elevated
+        stdin=stdin
+      File "/gpfs/software/ada/python/anaconda/2019.10/3.7/lib/python3.7/site-packages/conda/gateways/subprocess.py", line 106, in subprocess_call
+        output=formatted_output)
+    subprocess.CalledProcessError: Command '['sudo', '/gpfs/software/ada/python/anaconda/2019.10/3.7/bin/python', '-m', 'conda.core.initialize']' returned non-zero exit status 1.
+
+`$ /gpfs/software/ada/python/anaconda/2019.10/3.7/bin/conda init bash`
+
+  environment variables:
+                 CIO_TEST=<not set>
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/gpfs/software/ada/python/anaconda/2019.10/3.7/bin/conda
+CONDA_MKL_INTERFACE_LAYER_BACKUP=
+             CONDA_PREFIX=/gpfs/software/ada/python/anaconda/2019.10/3.7
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/gpfs/software/ada/python/anaconda/2019.10/3.7/bin/python
+               CONDA_ROOT=/gpfs/software/ada/python/anaconda/2019.10/3.7
+              CONDA_SHLVL=1
+           CURL_CA_BUNDLE=<not set>
+     JAVA_LD_LIBRARY_PATH=/gpfs/software/ada/python/anaconda/2019.10/3.7/jre/lib/amd64/server
+                  MANPATH=/usr/share/lmod/lmod/share/man:/opt/quest/man:
+               MODULEPATH=/gpfs/software/ada/modules/benchmark:/gpfs/software/ada/modules/mth:/g
+                          pfs/software/ada/modules/env:/gpfs/software/ada/modules/cmp:/gpfs/soft
+                          ware/ada/modules/che:/gpfs/software/ada/modules/bio-med:/gpfs/software
+                          /ada/modules/libraries:/gpfs/software/ada/modules/compilers:/gpfs/soft
+                          ware/ada/modules/general:/etc/modulefiles:/usr/share/modulefiles:/usr/
+                          share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lm
+                          od/modulefiles/Core
+                     PATH=/gpfs/software/ada/python/anaconda/2019.10/3.7/bin:/gpfs/software/ada/
+                          python/anaconda/2019.10/3.7/condabin:/gpfs/home/mep22dku/bin:/usr/loca
+                          l/UEA/bin:/usr/local/bin:/usr/bin:/usr/local/bin:/usr/bin:/usr/local/s
+                          bin:/usr/sbin:/usr/lpp/mmfs/bin:/gpfs/data/greenocean/software/bin
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+__LMOD_REF_COUNT_MODULEPATH=/gpfs/software/ada/modules/benchmark:1;/gpfs/software/ada/modules/mth:
+                          1;/gpfs/software/ada/modules/env:1;/gpfs/software/ada/modules/cmp:1;/g
+                          pfs/software/ada/modules/che:1;/gpfs/software/ada/modules/bio-med:1;/g
+                          pfs/software/ada/modules/libraries:1;/gpfs/software/ada/modules/compil
+                          ers:1;/gpfs/software/ada/modules/general:1;/etc/modulefiles:1;/usr/sha
+                          re/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles
+                          /Core:1;/usr/share/lmod/lmod/modulefiles/Core:1
+
+     active environment : base
+    active env location : /gpfs/software/ada/python/anaconda/2019.10/3.7
+            shell level : 1
+       user config file : /gpfs/home/mep22dku/.condarc
+ populated config files : 
+          conda version : 4.9.2
+    conda-build version : 3.20.0
+         python version : 3.7.3.final.0
+       virtual packages : __glibc=2.17=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /gpfs/software/ada/python/anaconda/2019.10/3.7  (read only)
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /gpfs/software/ada/python/anaconda/2019.10/3.7/pkgs
+                          /gpfs/home/mep22dku/.conda/pkgs
+       envs directories : /gpfs/home/mep22dku/.conda/envs
+                          /gpfs/software/ada/python/anaconda/2019.10/3.7/envs
+               platform : linux-64
+             user-agent : conda/4.9.2 requests/2.22.0 CPython/3.7.3 Linux/3.10.0-1160.45.1.el7.x86_64 centos/7.9.2009 glibc/2.17
+                UID:GID : 11575:1700
+             netrc file : None
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+import: unable to open X server `' @ error/import.c/ImportImageCommand/344.
+import: unable to open X server `' @ error/import.c/ImportImageCommand/344.
+/tmp/slurmd/job11690701/slurm_script: line 24: syntax error near unexpected token `('
+/tmp/slurmd/job11690701/slurm_script: line 24: `yrs = np.arange(1940,1950,1)'
