@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 14})
 
-def plot_carbon(dsets, cols, descs, sdir, fnam, tend = 2100, tendatm = 800):
+def plot_carbon(dsets, cols, descs, sdir, fnam, tstart = 1948, tend = 2100, tendatm = 800):
     fact = 0.7
     fig, axs = plt.subplots(2,2, figsize=(23*fact, 14*fact), facecolor='w', edgecolor='k')
     axs = axs.ravel()
@@ -19,7 +19,7 @@ def plot_carbon(dsets, cols, descs, sdir, fnam, tend = 2100, tendatm = 800):
     ylabs = ['petagram C', 'petagram C', '$\mu$atm', '$\mu$atm']
     for i in range(0,4):
         axs[i].grid()
-        axs[i].set_xlim(1948,tend)
+        axs[i].set_xlim(tstart,tend)
         axs[i].set_title(tits[i])
         axs[i].set_ylabel(ylabs[i])
 

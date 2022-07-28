@@ -2,7 +2,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -p compute-24-96
 #SBATCH -t 96:00:00
-#SBATCH --job-name=1as7
+#SBATCH --job-name=get_pic
 #SBATCH -o p-%J.out
 #SBATCH -e p-%J.out
 #SBATCH --mem 8G
@@ -10,4 +10,4 @@
 module purge
 module add python/anaconda/2019.10/3.7
 source activate swampenv
-python3 run_breakdown_carbon.py
+python3 run_breakdown_spinup.py

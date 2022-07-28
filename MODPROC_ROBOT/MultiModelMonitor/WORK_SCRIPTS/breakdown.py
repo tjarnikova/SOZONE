@@ -48,7 +48,8 @@ def breakdown_maker(tr, baseDir = '/gpfs/afm/greenocean/software/runs/', \
 def get_cflx(tmin,tmax,tr, baseDir, sdir, fnam, verbose = False):
     '''take an mfdataset, calculate ts of cflx 
     for whole ocean and southern ocean, return two np arrays'''
-    t_yearlist = make_yearlist(tmin,tmax,'diad',tr, baseDir)
+    #t_yearlist = make_yearlist(tmin,tmax,'diad',tr, baseDir)
+    t_yearlist = make_yearlist_globsort(tmin,tmax, 'diad', tr, baseDir)
     yrs = np.arange(tmin, tmax+1,1)
     t_ds = xr.open_mfdataset(t_yearlist)    
     #cflx is in mol/m2/s, multiply by m2 in meshmask to get mol/s/grid cell
@@ -105,6 +106,11 @@ def make_yearlist(yrst, yrend, dtype, tr, baseDir):
         t2 = glob.glob(ty)
         #print(t2)
         ylist.append(t2[0])
+    return ylist
+
+def make_yearlist_globsort(yrst, yrend, dtype, tr, baseDir):
+    ylist = sorted(glob.glob(f'{baseDir}/{tr}/*{dtype}*'),\
+               key=os.path.getmtime)
     return ylist
 
 def max_min_yrs(tr, baseDir):
