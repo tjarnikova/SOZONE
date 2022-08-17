@@ -14,9 +14,9 @@ extract = True #extracting?
 graph = True #plotting?
 sdir = '/gpfs/home/mep22dku/scratch/SOZONE/MODPROC_ROBOT/MultiModelMonitor/OUTPUT/' #results directory
 fnam = 'Cflx_spinup_monitor.png' ## filename for resulting plot
-tms = ['TOM12_TJ_SORS']#,'TOM12_TJ_1BS2', 'TOM12_TJ_3AS1','TOM12_DW_WE43', 'TOM12_DW_GA01'] ##models to plot
+tms = ['TOM12_TJ_SP01']#,'TOM12_TJ_1BS2', 'TOM12_TJ_3AS1','TOM12_DW_WE43', 'TOM12_DW_GA01'] ##models to plot
 tms_te = tms ##models to extract
-descs = ['SORS: model spinup',
+descs = ['SPO1: model spinup',
          'GA01: DW(NCEP), GCB run'] #descriptions of models in tm
 cols = ['brown', sc.scen['1A']['color'],sc.scen['1B']['color'],sc.scen['3A']['color'], 'grey', 'b'] #colours for models in tm
 

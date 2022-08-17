@@ -14,12 +14,13 @@ extract = True #extracting?
 graph = True #plotting?
 sdir = '/gpfs/home/mep22dku/scratch/SOZONE/MODPROC_ROBOT/MultiModelMonitor/OUTPUT/' #results directory
 fnam = '1AS7_Cflx_comparison.png' ## filename for resulting plot
-tms = ['TOM12_TJ_1AS7','TOM12_DW_WE43', 'TOM12_DW_GA01'] ##models to plot
+tms = ['TOM12_TJ_1AS7','TOM12_TJ_1AS6','TOM12_DW_WE43', 'TOM12_DW_GA01'] ##models to plot
 tms_te = ['TOM12_TJ_1AS7'] ##models to extract
 descs = ['1AS7: TJ(MET), Hist. ozone, \n SSP 1-2.6, restart@ WE43(1948)',\
-         'WE43: DW(ERA5)',
+         '1AS6: TJ(MET) UNSTABLE',\
+          'WE43: DW(ERA5)',\
          'GA01: DW(NCEP), GCB run'] #descriptions of models in tm
-cols = [sc.scen['1A']['color'],'grey', 'b'] #colours for models in tm
+cols = ['red',sc.scen['1A']['color'],'grey', 'b'] #colours for models in tm
 
 if extract: 
     for tm in tms_te:
