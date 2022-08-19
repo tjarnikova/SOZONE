@@ -6,3 +6,4 @@
 */pkls/*
 *.jpg
 */OLD/*
+*/__pycache__/*
