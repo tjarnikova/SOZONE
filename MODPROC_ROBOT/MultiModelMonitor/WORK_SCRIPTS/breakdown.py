@@ -49,7 +49,7 @@ def get_cflx(tmin,tmax,tr, baseDir, sdir, fnam, verbose = False):
     '''take an mfdataset, calculate ts of cflx 
     for whole ocean and southern ocean, return two np arrays'''
     #t_yearlist = make_yearlist(tmin,tmax,'diad',tr, baseDir)
-    t_yearlist = make_yearlist_globsort(tmin,tmax, 'diad', tr, baseDir)
+    t_yearlist = make_yearlist(tmin,tmax, 'diad', tr, baseDir)
     yrs = np.arange(tmin, tmax+1,1)
     t_ds = xr.open_mfdataset(t_yearlist)    
     #cflx is in mol/m2/s, multiply by m2 in meshmask to get mol/s/grid cell
