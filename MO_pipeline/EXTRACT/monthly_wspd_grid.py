@@ -7,7 +7,7 @@ import sys
 sys.path.append('..')
 import scendict as sc
 
-rdir = '/gpfs/home/mep22dku/scratch/MET_forcing/'
+rdir = '//gpfs/data/greenocean/software/resources/MetProcessed/MET_forcing/'
 starts = np.array([0, 31,  59,  90, 120, 151, 181, 212, 243, 273, 304, 334])
 ends = np.array([31,  59,  90, 120, 151, 181, 212, 243, 273, 304, 334, 365])
 
@@ -39,6 +39,7 @@ for s in range(0,6):
             t_stor[yr-1940,13,:,:] = np.nanmean(winter,axis = 0)
             t_stor[yr-1940,14,:,:] = np.nanmean(t_nc,axis = 0)
         except:
+            print(f'cannot find {scen} {yr}')
             t_stor[yr-1940,:,:,:] = np.nan
 
     ds = xr.Dataset(

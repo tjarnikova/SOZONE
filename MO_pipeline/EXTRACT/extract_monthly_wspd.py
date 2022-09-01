@@ -52,6 +52,8 @@ def return_mean_SO_wspd(tdir,yr):
             monthly_sts[i,2] = np.nanmin(t_mon)
 
     except:
+        print('cannot find')
+        print(f'{tdir} {yr}')
         x = 'we'
                     
     return monthly_sts
