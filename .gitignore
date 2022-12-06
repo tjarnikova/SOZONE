@@ -1,3 +1,4 @@
+*.txt
 *.nc
 */.ipynb_checkpoints/*
 *.pkl

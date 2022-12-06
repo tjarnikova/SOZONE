@@ -3,8 +3,9 @@ import pickle
 import netCDF4 as nc
 import numpy as np
  
-runhorse = True
-rdir = '/gpfs/home/mep22dku/scratch/MET_soft/'
+runhorse = False
+runhorse2 = True
+rdir = '/gpfs/data/greenocean/software/resources/MetProcessed/MET_soft/'
 dir_1H = 'hist/u-bc370_hist/'
 dir_2H = 'hist/u-cj198_hist_1950start1950ozone/'
 dir_3H = 'hist/u-cj200_hist_1990start1990ozone/'
@@ -31,8 +32,9 @@ def return_mean_SO_wspd(tdir,yr):
         starts[i] = np.sum(days_in_month[0:i])
         ends[i] = np.sum(days_in_month[0:i+1])
     
-    
-    rdir = f'/gpfs/home/mep22dku/scratch/MET_soft/{tdir}'
+    #change for pi control
+    rdir = f'/gpfs/data/greenocean/software/resources/MetProcessed/MET_soft/{tdir}'
+    rdir = '/gpfs/home/mep22dku/scratch/u-aw310_pictrl/'
     uf_f = glob.glob(f'{rdir}/taux_1d_{yr}_daily.nc')
     vf_f = glob.glob(f'{rdir}/tauy_1d_{yr}_daily.nc')
 
@@ -52,6 +54,8 @@ def return_mean_SO_wspd(tdir,yr):
             monthly_sts[i,2] = np.nanmin(t_mon)
 
     except:
+        print('cannot find')
+        print(f'{tdir} {yr}')
         x = 'we'
                     
     return monthly_sts
@@ -73,34 +77,40 @@ if runhorse:
     stor = calc_stats_wspd(tdir,yrstart,yrend)
     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_2H'; tdir = dir_2H; yrstart = 1950; yrend = 2015
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_2H'; tdir = dir_2H; yrstart = 1950; yrend = 2015
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_3H'; tdir = dir_3H; yrstart = 1990; yrend = 2015
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_3H'; tdir = dir_3H; yrstart = 1990; yrend = 2015
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_1FA'; tdir = dir_1FA; yrstart = 2015; yrend = 2101
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_1FA'; tdir = dir_1FA; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_2FA'; tdir = dir_2FA; yrstart = 2015; yrend = 2101
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_2FA'; tdir = dir_2FA; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_3FA'; tdir = dir_3FA; yrstart = 2015; yrend = 2101
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_3FA'; tdir = dir_3FA; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_1FB'; tdir = dir_1FB; yrstart = 2015; yrend = 2101
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_1FB'; tdir = dir_1FB; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_2FB'; tdir = dir_2FB; yrstart = 2015; yrend = 2101
-    stor = calc_stats_wspd(tdir,yrstart,yrend)
-    pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+#     tnam = 'scen_2FB'; tdir = dir_2FB; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
 
-    tnam = 'scen_3FB'; tdir = dir_3FB; yrstart = 2015; yrend = 2101
+#     tnam = 'scen_3FB'; tdir = dir_3FB; yrstart = 2015; yrend = 2101
+#     stor = calc_stats_wspd(tdir,yrstart,yrend)
+#     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
+
+if runhorse2:
+    print('picaaaaaa')
+    tnam = 'scen_PI'; tdir = dir_1H; yrstart = 2220; yrend = 2300
     stor = calc_stats_wspd(tdir,yrstart,yrend)
     pickle.dump(stor, open(f"./pkls/{tnam}_wspd_{yrstart}_{yrend}.pkl", 'wb'))
