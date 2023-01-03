@@ -8,7 +8,7 @@ mod = {
         'color' : 'tan'},
     'TOM12_DW_GA01' : {
         'basedir' : '/gpfs/data/greenocean/software/runs/',
-        'color' : 'silver'},
+        'color' : 'dimgrey'},
     'TOM10_CL_LIG9' : {
         'basedir' : '/gpfs/home/e415/scratch/',
         'color' : 'plum'},

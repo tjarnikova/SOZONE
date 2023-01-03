@@ -2,6 +2,41 @@ import numpy as np
 import glob
 import netCDF4 as nc
 
+
+def haversine(lon1, lat1, lon2, lat2):
+    """Calculate the great-circle distance in kilometers between two points
+    on a sphere from their longitudes and latitudes.
+    Reference: http://www.movable-type.co.uk/scripts/latlong.html
+    :arg lon1: Longitude of point 1.
+    :type lon1: float or :py:class:`numpy.ndarray`
+    :arg lat1: Latitude of point 1.
+    :type lat1: float or :py:class:`numpy.ndarray`
+    :arg lon2: Longitude of point 2.
+    :type lon2: float or :py:class:`numpy.ndarray`
+    :arg lat2: Latitude of point 2.
+    :type lat2: float or :py:class:`numpy.ndarray`
+    :returns: Great-circle distance between two points in km
+    :rtype: float or :py:class:`numpy.ndarray`
+    """
+    lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+    c = 2 * np.arcsin(np.sqrt(a))
+    km = 6367 * c
+    return km
+
+def find_closest(lon1, lat1):
+    w = nc.Dataset('/gpfs/data/greenocean/software/runs/TOM12_TJ_1ASA/ORCA2_1m_20500101_20501231_ptrc_T.nc')
+    lats = (w['nav_lat'][:])
+    lons = w['nav_lon'][:]
+    km = haversine(lon1, lat1, lons, lats)
+    q = (np.where(km == np.min(km)))
+    tY = q[0][0]
+    tX = q[1][0]
+
+    return tY, tX
+
 def make_yearlist(yrst, yrend, dtype, modnam):
     '''
     open many files together as the same dataset
