@@ -9,3 +9,10 @@
 */pkls/*
 */OLD/*
 */__pycache__/*
+OLD/*
+MODPROC_ROBOT/PLOTS/
+MO_RESULTS/PIC/
+MO_pipeline/PICTURES/
+PICTURES/
+Tuning/datasets/
+evalOutput/argo_processed/
