@@ -1,0 +1,9 @@
+SCENARIO 1A
+SCENARIO 1B
+SCENARIO 2A
+Traceback (most recent call last):
+  File "calculateSSTsouthof50.py", line 93, in <module>
+    mld_2A = xr.open_mfdataset(make_yearlist_ukesm(yst,yen,'2A', dtype = 'TS'))
+  File "/gpfs/home/mep22dku/.conda/envs/swamp2/lib/python3.7/site-packages/xarray/backends/api.py", line 891, in open_mfdataset
+    raise OSError("no files to open")
+OSError: no files to open

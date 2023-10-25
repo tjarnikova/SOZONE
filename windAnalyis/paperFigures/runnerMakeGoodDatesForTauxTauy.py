@@ -1,0 +1,144 @@
+#put python script here
+#point: for all taux and tauy files for the 6 UKESM scenarios, 1 PI scenario, and historic ERA5 record, remake them with a date format that allows processing with xarray
+# careful, era5 respects leap years and UKESM does not
+
+import numpy as np
+import pandas as pd
+import xarray as xr
+import glob
+from datetime import datetime
+
+#root directory
+rdir = '/gpfs/data/greenocean/software/'
+dir_1H = 'resources/MetProcessed/MET_soft/hist/u-bc370_hist/'
+dir_2H = 'resources/MetProcessed/MET_soft/hist/u-cj198_hist_1950start1950ozone/'
+dir_3H = 'resources/MetProcessed/MET_soft/hist/u-cj200_hist_1990start1990ozone/'
+
+dir_1FA = 'resources/MetProcessed/MET_soft/ssp126/u-be682_ssp126/'
+dir_1FB = 'resources/MetProcessed/MET_soft/ssp370/u-ce417_ssp370/'
+
+dir_2FA = 'resources/MetProcessed/MET_soft/ssp126/u-cj880_ssp126_1950start1950ozone/'
+dir_2FB = 'resources/MetProcessed/MET_soft/ssp370/u-cj881_ssp370_1950start1950ozone/'
+
+dir_3FA = 'resources/MetProcessed/MET_soft/ssp126/u-cj484_ssp126_1990start1990ozone/'
+dir_3FB = 'resources/MetProcessed/MET_soft/ssp370/u-cj504_ssp370_1990start1990ozone/'
+
+dir_PI = 'resources/MetProcessed-PI/u-aw310_pictrl/'
+
+dir_ERA5 = 'products/ERA5_v202303_TJ/'
+
+###
+def make_better_dates(fileprefix, tdir,yr, PI, ERA):
+    
+    if PI:
+        yrtosave = yr - 270 #year 270 offset
+    else:
+        yrtosave = yr
+
+    #make better uflxs with nice dates (where to save):
+    sdir = '/gpfs/data/greenocean/software/resources/windsProcessed/'
+    fnam_taux = f'{fileprefix}_taux_{yrtosave}_daily.nc'
+    fnam_tauy = f'{fileprefix}_tauy_{yrtosave}_daily.nc'
+
+    fnam_tosave_taux = f'{sdir}{fnam_taux}'
+    fnam_tosave_tauy = f'{sdir}{fnam_tauy}'
+
+    tauxfile = glob.glob(f'{rdir}{tdir}/taux_1d_{yr}_daily.nc')
+    v = xr.open_dataset(tauxfile[0] ,decode_times=False)
+    times = pd.date_range(f"{yrtosave}/01/01",f"{yrtosave+1}/01/01",freq='D',closed='left')
+    if ERA == False:
+        times = times[~((times.month == 2) & (times.day == 29))] #exclude leap yrs; nvm don't have to
+
+    data_vars = {'uflx':(['time_counter', 'y', 'x'], v.uflx.values,
+    {'units': 'm/s',
+    'long_name':'uflx'}),
+    }
+    # define coordinates
+    coords = {'time_counter': (['time_counter'], times),
+    'nav_lat': (['y','x'], v.nav_lat.values),
+    'nav_lon': (['y','x'], v.nav_lon.values),
+    }
+    # define global attributes
+    attrs = {'made in':'SOZONE/windAnalyis/paperFigures/runnerMakeGoodDatesForTauxTauy.py',
+    'desc': 'remaking all forcing with good dates. if PI, nominal year is in filename, actual year is saved (leap year consistency)'
+    }
+
+    ds = xr.Dataset(data_vars=data_vars,
+    coords=coords,
+    attrs=attrs)
+    ds.to_netcdf(fnam_tosave_taux)
+
+   
+    tauyfile = glob.glob(f'{rdir}{tdir}/tauy_1d_{yr}_daily.nc')
+    v = xr.open_dataset(tauyfile[0] ,decode_times=False)
+    times = pd.date_range(f"{yrtosave}/01/01",f"{yrtosave+1}/01/01",freq='D',closed='left')
+    if ERA == False:
+        times = times[~((times.month == 2) & (times.day == 29))] #exclude leap yrs
+
+    data_vars = {'vflx':(['time_counter', 'y', 'x'], v.vflx.values,
+    {'units': 'm/s',
+    'long_name':'vflx'}),
+    }
+    # define coordinates
+    coords = {'time_counter': (['time_counter'], times),
+    'nav_lat': (['y','x'], v.nav_lat.values),
+    'nav_lon': (['y','x'], v.nav_lon.values),
+    }
+    # define global attributes
+    attrs = {'made in':'SOZONE/windAnalyis/paperFigures/runnerMakeGoodDatesFortauyTauy.py',
+    'desc': 'remaking all forcing with good dates. if PI, nominal year is in filename, actual year is saved (leap year consistency)'
+    }
+
+    ds = xr.Dataset(data_vars=data_vars,
+    coords=coords,
+    attrs=attrs)
+    ds.to_netcdf(fnam_tosave_tauy)
+
+
+    return 
+
+def runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False):
+    print(f'PI: {PI}')
+    for yr in range(yrstart,yrend):
+        make_better_dates(tnam, tdir,yr, PI, ERA)
+
+    return 
+
+# tnam = 'UKESM_1H'; tdir = dir_1H; yrstart = 1940; yrend = 2015
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_2H'; tdir = dir_1H; yrstart = 1940; yrend = 1950
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_2H'; tdir = dir_2H; yrstart = 1950; yrend = 2015
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_3H'; tdir = dir_1H; yrstart = 1940; yrend = 1990
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_3H'; tdir = dir_3H; yrstart = 1990; yrend = 2015
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_1FA'; tdir = dir_1FA; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_2FA'; tdir = dir_2FA; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_3FA'; tdir = dir_3FA; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_1FB'; tdir = dir_1FB; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_2FB'; tdir = dir_2FB; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_3FB'; tdir = dir_3FB; yrstart = 2015; yrend = 2101
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = False)
+
+# tnam = 'UKESM_PI'; tdir = dir_PI; yrstart = 2220; yrend = 2300
+# runner(tnam, tdir, yrstart, yrend, PI = True, ERA = False)
+
+# tnam = 'ERA5_v2023'; tdir = dir_ERA5; yrstart = 1940; yrend = 2023
+# runner(tnam, tdir, yrstart, yrend, PI = False, ERA = True)

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "calculateUKESMmeanForcing.py", line 89, in <module>
+    td = xr.open_mfdataset(make_yearlist_era(1940, 2022,  dtype = 'wspd'))
+  File "calculateUKESMmeanForcing.py", line 29, in make_yearlist_era
+    ty = f'/gpfs/data/greenocean/software/resources/windsProcessed/ERA5_v2023_{dtype}_{y}_daily.nc'
+NameError: name 'y' is not defined

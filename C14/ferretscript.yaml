@@ -1,0 +1,111 @@
+### aim: recreate corinne's ferret c14 code in python
+
+Notes here: https://satin-mascara-327.notion.site/Analysing-14C-079ef1a8ccb24e8f86c714d53d865f8c
+
+### date: 
+
+--A) load data
+    code:
+    # `! upload mask 
+    # use "/gpfs/data/greenocean/mesh_mask_v2.3.nc"
+
+    # ! upload climate runs 
+    # use "/gpfs/home/e415/scratch/TOM5_CE_C14d/C14d_1950_2014_qtr_c14.nc"
+    # use "/gpfs/home/e415/scratch/TOM5_CE_C14d/C14d_1950_2014_Cflx.nc"
+
+    # ! upload control run 
+    # use "/gpfs/home/e415/scratch/TOM5_CE_C14c/C14c_1950_2014_qtr_c14.nc"
+    # use "/gpfs/home/e415/scratch/TOM5_CE_C14c/C14c_1950_2014_Cflx.nc"
+    # !
+    # ! upload the vertical gradient in 14C and DIC
+    # use "/gpfs/home/e415/scratch/TOM5_CE_C14c/dc14dz.nc"
+--A)
+
+    !def axis/t=16-jan-1950:31-dec-2015/np=792 newgrid
+    def axis/t=16-jan-1950:31-dec-2014/np=780 newgrid
+
+    ! define axis for label 
+    def axis/t=1950:2014/np=780 aforlabel
+
+--B) get areas/grid variables
+    ! define grid variables 
+    let area = e1t[d=1,l=1,k=1]*e2t[d=1,l=1,k=1] ! in m2
+    let tarea = area[i=@sum,j=@sum,d=1] ! in m2
+    let vol = area[d=1] * e3t_0[d=1] ! in m3 
+--B)
+    define viewport /xlim=0.25,0.85/ylim=0.56,1.0 u3w
+    define viewport /xlim=0.25,0.85/ylim=0.28,0.72 m3w
+    define viewport /xlim=0.25,0.85/ylim=0.0,0.44 l3w
+
+    ppl tics 0.125,0.30,0.125,0.30,1,1
+    ppl axnmtc 1,1
+    ppl axlint 1,1
+    ppl axnsig 1,1
+    ppl axset 1,1,1,1
+    ppl axlsze 0.12, 0.12
+    ppl pen,7
+
+    ! 
+    ! regrid the time because there was a problem with the time stamp in the netcdf file
+    ! Tereza, this step should not be necessary if your netcdf files are written in the standard way
+    ! TJ: I think the problem with the timestamp was that it's from 1978-2042, not 1950-2014 (end). fix later. whatever.
+    let qtrnewt = qtr_c14[gt=newgrid@asn]*tmask[d=1,l=1,k=1]
+    let cflxnewt = cflx[gt=newgrid@asn]*tmask[d=1,l=1,k=1] 
+    let dc14dznewt = dc14dz[gt=newgrid@asn] 
+    let ddicdznewt = ddicdz[gt=newgrid@asn] 
+    ! 
+
+    ! Flux 
+    ! convert Orr-units for 14C flux tracer c14b to units of mol per year 
+    ! see explanation in Orr et al GBC 2001; the c14b-ratio is used as a concentration
+    ! first factor 1/10 below divides by the upper level depth to obtain units of Orr-units/s, 
+    ! then use the same factors as for the concentration 
+    let qtrflx = (qtrnewt/10)*2.*1e-14*vol[l=1]*3.156e7
+
+    ! Flux 
+    ! now convert CO2 flux to units of mols per year  
+    let cflxint = cflxnewt*area[l=1]*3.156e7 
+
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !
+    ! Plot figures
+    !
+    can vie
+    set vie world
+
+    ! plot the 14C flux 
+    set vie u3w
+    plot/line=3/nol/ylim=-2:8:2/xlim=01-jan-1950:31-dec-2016 qtrflx[d=2,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*6.023e23*1e-26 
+    plot/line=4/nol/o/xlim=01-jan-1950:31-dec-2016 qtrflx[d=4,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*6.023e23*1e-26 
+    label 1950 8.3 -1 0 0.12 "a) Climate (green) and control (blue) simulations, ^1^4C" 
+
+    ! plot the CO2 flux
+    set vie m3w
+    plot/line=3/nol/ylim=0:1.5:0.4/xlim=01-jan-1950:31-dec-2016 cflxint[d=3,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*12e-15 
+    plot/line=4/nol/o/xlim=01-jan-1950:31-dec-2016 cflxint[d=5,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*12e-15 
+    label 1950 1.65 -1 0 0.12 "b) Climate (green) and control (blue) simulations, CO_2" 
+
+    ! plot all labels
+    ppl axset 0,0,0,0
+    ppl axlsze 0.,0.
+    plot/nol/ylim=-1:1/xlim=1950:2017 cflxint[d=5,i=@sum,j=1:47@sum,k=1,gt=aforlabel@asn]*0+1000 
+    label 1940 2.5 0 90 0.12 "^1^4C flux (10^2^6 atoms/yr)" 
+    label 1940 0.1 0 90 0.12 "CO_2 flux (PgC/yr)" 
+    label 1940 -2.5  0 90 0.12 "Difference (units as above)" 
+    label 1985 -2.25 0 0 0.12 "^1^4C (black)"  
+    label 1994 -3.4 0 0 0.12 "CO_2 (red)" 
+    label 2073 2.0 0 0 0.12 "Well. minus Cam. (turquoise)"  
+    label 1975 0.55 0 0 0.12 "Climate (green), control (blue)"
+    label 1975 2.00 0 0 0.12 "Climate (green), control (blue)" 
+    !
+    ppl axset 1,1,1,1
+    ppl axlsze 0.12, 0.12
+
+    ! plot the difference between the full run (RUN A) and the constant climate run (RUN C)
+    set vie l3w 
+    ! non-normalised to changing d14C/dz*(-1)
+    plot/nol/ylim=-0.28:0.28:0.1/xlim=01-jan-1950:31-dec-2016 (qtrflx[d=2,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*6.023e23*1e-26 - qtrflx[d=4,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*6.023e23*1e-26)*(-1)  
+    label 1950 0.32 -1 0 0.12 "c) Difference, ^1^4C*(-1) & CO_2, not normalised (r=0.58)" 
+
+    plot/line=2/nol/o/ylim=-0.5:0.5/xlim=01-jan-1950:31-dec-2016 cflxint[d=3,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*12e-15 - cflxint[d=5,i=@sum,j=1:47@sum,k=1,l=@sbx:12]*12e-15 
+

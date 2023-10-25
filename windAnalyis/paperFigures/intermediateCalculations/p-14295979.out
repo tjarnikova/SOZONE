@@ -1,0 +1,4 @@
+  File "calculateSSTsouthof50.py", line 81
+    v.name = .votemper.isel(deptht=0).
+             ^
+SyntaxError: invalid syntax
