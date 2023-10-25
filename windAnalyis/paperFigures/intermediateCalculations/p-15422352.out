@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "calcWinds_50S.py", line 39, in <module>
-    td = xr.open_mfdataset(make_yearlist(yrst, yren, '2H', '2FA', dtype = 'wspd'))
-  File "calcWinds_50S.py", line 22, in make_yearlist
-    ylist.append(t2[0])
-IndexError: list index out of range
