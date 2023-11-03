@@ -1,6 +1,7 @@
 .ipynb_checkpoints
 *.sh
 *.bsub
+*.out
 *.jpg
 *.txt
 *.nc
