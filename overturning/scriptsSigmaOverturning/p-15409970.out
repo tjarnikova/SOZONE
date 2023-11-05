@@ -1,5 +1,0 @@
- running sigma moc extraction on cj200o, 2015-01-01 to 2099-12-01
-Traceback (most recent call last):
-  File "runSigmaOverturning.py", line 110, in <module>
-    q = (t_fil[0])
-IndexError: list index out of range
