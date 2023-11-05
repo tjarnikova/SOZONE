@@ -21,3 +21,4 @@ Tuning/datasets/
 evalOutput/argo_processed/
 CDFTOOLS/*
 CDFTOOLS_JL/*
+BallastingCael/fromCael/*
