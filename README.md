@@ -5,23 +5,7 @@ written by Tereza Jarníková
 T.Jarnikova [a] uea.ac.uk | tjarnik [a] gmail.com | 
 UEA Green Ocean Group
 
-:globe_with_meridians: :globe_with_meridians: :globe_with_meridians:
 
-List of subfolders:
-- DEBUG:
-    - debugging crashes and irregularities in the model
-- EVAL_output:
-    - model evaluation against various obs. products
-- MO_pipeline:
-- MO_RESULTS:
-- MODPROC_ROBOT:
-- PICTURES:
-- prelim_EVAL_forcing: 
-    - visualizing and comparing the different atmospheric forcing products (MetOffice, Era5, NCEP - early stages)
-- RUNS_ANALYSIS:
-    - visualize/analyze model output
-- UTILS:
-    - commonly used functions and landmasks, scratch paper
     
 
 
