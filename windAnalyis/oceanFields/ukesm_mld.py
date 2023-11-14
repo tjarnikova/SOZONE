@@ -19,13 +19,14 @@ baseDir = '/gpfs/data/greenocean/software/resources/MEDUSA/ukesm_allscen_gridT_T
 def get_mld(sa,ct,deptht):
 
     st = gsw.sigma0(sa,ct)
-    st = st.values
     dens_10m = np.interp(10, deptht[7:9], st[7:9]) #get density at 10m
     dens01 = dens_10m+0.01 #get criterions
     dens03 = dens_10m+0.03
 
     depth_dens01 = -9999 #default values
     depth_dens03 = -9999
+    
+
     
     try:
 
@@ -36,6 +37,14 @@ def get_mld(sa,ct,deptht):
         fb_03 = [np.where(st >= dens03)][0][0]
         fb_03 = fb_03[0]
         depth_dens03 = np.interp(dens03,st[fb_03-1:fb_03+1], deptht[fb_03-1:fb_03+1])
+        
+        q = (np.where(ct == 0)) ##run out of ocean values
+        first0 = (q[0][0])
+        #if it's finding 
+        if fb_01 >= first0:
+            depth_dens01 = deptht[first0-1]
+        if fb_03 >= first0:
+            depth_dens03 = deptht[first0-1]    
     
     except:
         
@@ -54,7 +63,7 @@ def make_mld_nc(year):
     
     times = pd.date_range(f"{year}/01/01",f"{year+1}/01/01",freq='MS',closed='left')
 
-    
+    mm_med = xr.open_dataset('/gpfs/data/greenocean/software/resources/MEDUSA/mesh_mask_eORCA1_wrk.nc')
 
     MLD_01 = np.zeros([12,332,362])
     MLD_03 = np.zeros([12,332,362])
@@ -67,11 +76,19 @@ def make_mld_nc(year):
 
             for i in range(0,362):
 
-                ct = w.thetao[m,:,j,i]
-                sa = w.so[m,:,j,i]
-                depth_dens01, depth_dens03 = get_mld(sa,ct,deptht)
-                MLD_01[m,j,i] = depth_dens01 
-                MLD_03[m,j,i] = depth_dens03 
+                mask = mm_med.tmaskutil[j,i].values
+                if mask == 0:
+                    MLD_01[m,j,i] = -9999 
+                    MLD_03[m,j,i] = -9999  
+                    print(f'land ho! j{j} i{i}')          
+                else:
+                    ct = w.thetao[m,:,j,i].values
+                    sa = w.so[m,:,j,i]
+                    depth_dens01, depth_dens03 = get_mld(sa,ct,deptht)
+                    if depth_dens01 == -9999:
+                        print(f'not land, but still cant find mld, m{m} j{j} i{i}')          
+                    MLD_01[m,j,i] = depth_dens01 
+                    MLD_03[m,j,i] = depth_dens03 
 
     data_vars = {'MLD_01':(['time_counter', 'y', 'x'], MLD_01,
     {'units': 'm',
