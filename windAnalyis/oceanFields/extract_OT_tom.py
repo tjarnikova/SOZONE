@@ -16,7 +16,7 @@ def make_yearfiles_tom(yrst, yren, tscen, sig = False):
     for y in range(yrst,yren):
     
         tdir = '/gpfs/home/mep22dku/scratch/SOZONE/windAnalyis/oceanFields/fullTOM_OT/'
-        td = glob.glob(f'{tdir}/TOM12_TJ_{tscen}A6_{y}_mocsig.nc')
+        td = glob.glob(f'{tdir}/TOM12_TJ_{tscen}A7_{y}_mocsig.nc')
         dslist.append(td[0])
 
     return dslist
@@ -25,7 +25,7 @@ def make_yearfiles_tom(yrst, yren, tscen, sig = False):
 def make_mocsig_nc(yr,tscen):
 
     tdir = '/gpfs/home/mep22dku/scratch/SOZONE/windAnalyis/oceanFields/max_OT/'
-    savenam_seas = f'{tdir}/seas_OT_{yr}_{tscen}-TOMA6.nc'
+    savenam_seas = f'{tdir}/seas_OT_{yr}_{tscen}-TOMA7.nc'
     print(savenam_seas)
 
     mocf = (make_yearfiles_tom(yr, yr+1, tscen, sig = True))

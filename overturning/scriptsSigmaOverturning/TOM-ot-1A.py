@@ -96,10 +96,18 @@ def get_overturning_TOM(year, run):
     
     return
         
+# for k in range(1950,2100):
+#     get_overturning_TOM(k, 'TOM12_TJ_1AA6')        
+#     get_overturning_TOM(k, 'TOM12_TJ_1BA6')
+#     get_overturning_TOM(k, 'TOM12_TJ_2AA6')
+#     get_overturning_TOM(k, 'TOM12_TJ_2BA6')
+#     get_overturning_TOM(k, 'TOM12_TJ_3AA6')
+#     get_overturning_TOM(k, 'TOM12_TJ_3BA6')
+
 for k in range(1950,2100):
-    get_overturning_TOM(k, 'TOM12_TJ_1AA6')        
-    get_overturning_TOM(k, 'TOM12_TJ_1BA6')
-    get_overturning_TOM(k, 'TOM12_TJ_2AA6')
-    get_overturning_TOM(k, 'TOM12_TJ_2BA6')
-    get_overturning_TOM(k, 'TOM12_TJ_3AA6')
-    get_overturning_TOM(k, 'TOM12_TJ_3BA6')
+    get_overturning_TOM(k, 'TOM12_TJ_1AA7')        
+    get_overturning_TOM(k, 'TOM12_TJ_1BA7')
+    get_overturning_TOM(k, 'TOM12_TJ_2AA7')
+    get_overturning_TOM(k, 'TOM12_TJ_2BA7')
+    get_overturning_TOM(k, 'TOM12_TJ_3AA7')
+    get_overturning_TOM(k, 'TOM12_TJ_3BA7')
